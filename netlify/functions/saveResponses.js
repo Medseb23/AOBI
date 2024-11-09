@@ -9,9 +9,9 @@ exports.handler = async (event, context) => {
     }
 
     // Aquí especificas tu API Key de Airtable y la tabla donde se guardarán los datos
-    const apiKey = 'TU_API_KEY_DE_AIRTABLE';
-    const baseId = 'TU_BASE_ID_DE_AIRTABLE';
-    const tableName = 'NombreDeLaTabla'; // Cambia esto por el nombre de tu tabla en Airtable
+    const apiKey = 'pat4XqcRGTk6x78PH.68312b9a7f83f8145f7c16f870bf0f47f3330ca86cea75ac67cdf4b784486925';
+    const baseId = 'appGXKpGqDSbmwisb/tbl9BkecBANtgEffP';
+    const tableName = 'aobi1'; // Cambia esto por el nombre de tu tabla en Airtable
 
     // Obtén los datos enviados desde el formulario
     const data = JSON.parse(event.body);
