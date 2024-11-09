@@ -435,10 +435,19 @@
                 };
             }
 
-                document.getElementById('submitBtn').addEventListener('click', () => {
+                document.getElementById('submitBtn').addEventListener('click', (event) => {
+    // Previene la acción predeterminada del botón para evitar la recarga de la página
+    event.preventDefault();
+
+    // Deshabilitar el botón de envío para prevenir clics múltiples
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+
+    console.log('Formulario enviado'); // Esto te ayudará a verificar si el evento se dispara dos veces
+
     const form = document.getElementById('questionnaireForm');
     const formData = new FormData(form);
-    
+
     // Crear un objeto que contenga todos los valores del formulario
     let responses = {};
     for (let [key, value] of formData.entries()) {
@@ -461,9 +470,15 @@
     })
     .then(data => {
         console.log('Respuestas guardadas exitosamente:', data);
+
+        // Restaurar el botón de envío
+        submitBtn.disabled = false;
     })
     .catch(error => {
         console.error('Error al guardar las respuestas:', error);
+
+        // Restaurar el botón de envío en caso de error
+        submitBtn.disabled = false;
     });
 });
                 
