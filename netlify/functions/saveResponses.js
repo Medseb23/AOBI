@@ -16,6 +16,7 @@ exports.handler = async (event, context) => {
     // Obtén los datos enviados desde el formulario
     const data = JSON.parse(event.body);
 
+    
     const base = new Airtable({ apiKey }).base(baseId);
 
     try {
@@ -50,17 +51,20 @@ exports.handler = async (event, context) => {
             responsibility2: data.responsibility2,
             responsibility3: data.responsibility3,
             responsibility4: data.responsibility4,
-            responsibility5: data.responsibility5
+            responsibility5: data.responsibility5,
         });
+
+        console.log('Record created successfully:', createdRecord);
 
         return {
             statusCode: 200,
             body: JSON.stringify(createdRecord),
         };
     } catch (error) {
+        console.error('Error creating record:', error);
         return {
             statusCode: 500,
-            body: `Error: ${error}`,
+            body: `Error: ${error.message}`,
         };
     }
 };
