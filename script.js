@@ -220,15 +220,7 @@
                 }
             };
 
-           document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('questionnaireForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const resultScreen = document.getElementById('resultScreen');
-    const goBackBtn = document.getElementById('goBackBtn');
-    const downloadPdfBtn = document.getElementById('downloadPdfBtn');
-    const toggleGuideBtn = document.getElementById('toggleGuideBtn');
-
-    submitBtn.addEventListener('click', async (event) => {
+     submitBtn.addEventListener('click', async (event) => {
         // Previene el comportamiento predeterminado del formulario
         event.preventDefault();
 
