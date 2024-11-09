@@ -235,11 +235,67 @@
 
             downloadPdfBtn.addEventListener('click', generatePDF);
 
-            toggleGuideBtn.addEventListener('click', () => {
-                const guideSection = document.getElementById('guideSection');
-                guideSection.style.display = guideSection.style.display === 'none' ? 'block' : 'none';
+             submitBtn.addEventListener('click', () => {
+        if (form.checkValidity()) {
+            // Enviar respuestas a Netlify y luego mostrar los resultados
+            saveResponses()
+                .then(() => showResults())
+                .catch(error => {
+                    alert('Hubo un problema al guardar tus respuestas. Por favor, intenta nuevamente.');
+                    console.error('Error al guardar las respuestas:', error);
+                });
+        } else {
+            alert('Por favor, responda todas las preguntas.');
+        }
+    });
+
+    async function saveResponses() {
+        const formData = new FormData(form);
+        
+        // Crear un objeto que contenga todos los valores del formulario
+        let responses = {};
+        for (let [key, value] of formData.entries()) {
+            responses[key] = value;
+        }
+
+        try {
+            const response = await fetch('/.netlify/functions/saveResponses', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(responses)
             });
 
+            // Verificar si la respuesta es exitosa
+            if (!response.ok) {
+                throw new Error(`Error al enviar los datos: ${response.status} - ${response.statusText}`);
+            }
+
+            // Intentar convertir la respuesta a JSON
+            const data = await response.json();
+            console.log('Respuestas guardadas exitosamente:', data);
+        } catch (error) {
+            console.error('Error al guardar las respuestas:', error);
+            throw error;  // Lanza el error para que el manejo en el `submitBtn` se encargue
+        }
+    }
+
+    goBackBtn.addEventListener('click', () => {
+        resultScreen.style.display = 'none';
+        form.style.display = 'block';
+    });
+
+    downloadPdfBtn.addEventListener('click', generatePDF);
+
+    toggleGuideBtn.addEventListener('click', () => {
+        const guideSection = document.getElementById('guideSection');
+        guideSection.style.display = guideSection.style.display === 'none' ? 'block' : 'none';
+    });
+
+
+
+                
             function showResults() {
                 const scores = calculateScores();
                 displayChart(scores);
