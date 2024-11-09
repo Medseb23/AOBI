@@ -20,6 +20,12 @@ exports.handler = async (event, context) => {
     const data = JSON.parse(event.body);
 
     const base = new Airtable({ apiKey }).base(baseId);
+    
+    // Convertir los valores de los campos que necesitan ser números
+    const convertToNumber = (value) => {
+        const number = parseInt(value, 10);
+        return isNaN(number) ? null : number;
+    };
 
     try {
         console.log('Intentando guardar respuestas en Airtable');
