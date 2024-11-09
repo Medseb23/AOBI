@@ -305,20 +305,44 @@
             }
 
             function calculateScores() {
-                const data = new FormData(form);
-                let scores = {
-                    adaptability: 0,
-                    wellbeing: 0,
-                    innovation: 0,
-                    sustainability: 0,
-                    connection: 0,
-                    responsibility: 0
-                };
-                for (let [name, value] of data.entries()) {
-                    scores[name] += parseInt(value);
-                }
-                return scores;
-            }
+    // Crear objeto para almacenar los puntajes de cada dimensión
+    let scores = {
+        adaptability: 0,
+        wellbeing: 0,
+        innovation: 0,
+        sustainability: 0,
+        connection: 0,
+        responsibility: 0
+    };
+
+    // Sumar los puntajes de cada dimensión usando la clase de cada grupo de preguntas
+    document.querySelectorAll('.adaptability').forEach(select => {
+        scores.adaptability += parseInt(select.value) || 0;
+    });
+
+    document.querySelectorAll('.wellbeing').forEach(select => {
+        scores.wellbeing += parseInt(select.value) || 0;
+    });
+
+    document.querySelectorAll('.innovation').forEach(select => {
+        scores.innovation += parseInt(select.value) || 0;
+    });
+
+    document.querySelectorAll('.sustainability').forEach(select => {
+        scores.sustainability += parseInt(select.value) || 0;
+    });
+
+    document.querySelectorAll('.connection').forEach(select => {
+        scores.connection += parseInt(select.value) || 0;
+    });
+
+    document.querySelectorAll('.responsibility').forEach(select => {
+        scores.responsibility += parseInt(select.value) || 0;
+    });
+
+    return scores;
+}
+
 
             function displayChart(scores) {
     const ctx = document.getElementById('resultsChart').getContext('2d');
