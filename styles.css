@@ -1,0 +1,148 @@
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, main {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #4b6584;
+        }
+
+        form, #resultScreen {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+/* Evitar saltos de página entre títulos y el contenido siguiente */
+h3, h2 {
+    page-break-after: avoid;
+}
+
+p, ul, li {
+    widows: 2;
+    orphans: 2;
+}
+
+        fieldset {
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #3867d6;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #3055a6;
+        }
+
+        /* Estilos para el gráfico */
+        #resultScreen {
+            display: none;
+        }
+
+        #resultsChart {
+    width: 100%;
+    max-height: 600px; /* Ajusta este valor según sea necesario */
+}
+
+
+        /* Estilos para la guía */
+        #guideSection {
+            display: none;
+        }
+.avoid-page-break {
+    page-break-inside: avoid;
+}
+
+/* Estilos específicos para impresión */
+@media print {
+    body {
+        background-color: #fff;
+        color: #000;
+        margin: 0;
+        padding: 0;
+    }
+
+    header, main {
+        margin: 0;
+        padding: 0.5in; /* Añadir un pequeño margen para mantener contenido bien separado de los bordes */
+        width: 100%;
+    }
+
+    #resultScreen {
+        max-width: 7.5in; /* Ancho máximo considerando tamaño carta en vertical con márgenes */
+        width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
+        margin: 0 auto; /* Centrar el contenido */
+        page-break-inside: avoid; /* Evitar que el contenido se corte a mitad de página */
+    }
+
+    h1, h2, h3 {
+        color: #000;
+    }
+
+    body, h1, h2, h3, p {
+        font-size: 12pt; /* Ajusta el tamaño de fuente si es necesario */
+    }
+
+    /* Ocultar elementos no deseados en el PDF */
+    #goBackBtn, #toggleGuideBtn, #downloadPdfBtn {
+        display: none;
+    }
+
+    /* Asegurar que las imágenes y canvas se muestren correctamente */
+    img, canvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Controlar los saltos de página */
+    h3 {
+        page-break-before: always;
+    }
+
+    .avoid-page-break {
+        page-break-inside: avoid;
+    }
+
+    /* Asegurar que las secciones completas no se corten */
+    section {
+        page-break-before: always; /* Forzar cada sección a iniciar en una nueva página */
+        page-break-inside: avoid; /* Evitar saltos de página dentro de una sección */
+    }
+
+    .avoid-page-break {
+        page-break-inside: avoid;
+    }
+}
+

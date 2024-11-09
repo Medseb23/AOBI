@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuestionario AOBI Mejorado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Enlaces a las librerías desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.5.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
+</head>
+<body>
+    <header>
+        <h1>Cuestionario de Adaptabilidad Organizacional y Bienestar Integral (AOBI)</h1>
+    </header>
+    <main>
+        <!-- Formulario del cuestionario -->
+        <form id="questionnaireForm">
+            <!-- Adaptabilidad al Cambio -->
+            <section>
+                <h2>Adaptabilidad al Cambio</h2>
+                <!-- Pregunta 1 -->
+                <fieldset>
+                    <legend>1. Siento que mi equipo puede adaptarse rápidamente a los cambios en el trabajo.</legend>
+                    <label for="adaptability1">Seleccione una opción:</label>
+                    <select name="adaptability" id="adaptability1" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 2 -->
+                <fieldset>
+                    <legend>2. La organización proporciona herramientas para adaptarnos eficazmente a nuevas tecnologías.</legend>
+                    <label for="adaptability2">Seleccione una opción:</label>
+                    <select name="adaptability" id="adaptability2" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 3 -->
+                <fieldset>
+                    <legend>3. Recibo la capacitación necesaria para enfrentar los cambios en mi trabajo.</legend>
+                    <label for="adaptability3">Seleccione una opción:</label>
+                    <select name="adaptability" id="adaptability3" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 4 -->
+                <fieldset>
+                    <legend>4. Mi equipo cuenta con la flexibilidad para ajustar sus objetivos y métodos según las circunstancias.</legend>
+                    <label for="adaptability4">Seleccione una opción:</label>
+                    <select name="adaptability" id="adaptability4" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 5 -->
+                <fieldset>
+                    <legend>5. La organización facilita un entorno en el que se promueve el aprendizaje constante.</legend>
+                    <label for="adaptability5">Seleccione una opción:</label>
+                    <select name="adaptability" id="adaptability5" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+            </section>
+
+            <!-- Bienestar Integral -->
+            <section>
+                <h2>Bienestar Integral</h2>
+                <!-- Pregunta 1 -->
+                <fieldset>
+                    <legend>1. Siento que se respeta mi tiempo personal y tengo espacio para desconectarme.</legend>
+                    <label for="wellbeing1">Seleccione una opción:</label>
+                    <select name="wellbeing" id="wellbeing1" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 2 -->
+                <fieldset>
+                    <legend>2. Mi carga laboral no afecta negativamente mi salud mental y emocional.</legend>
+                    <label for="wellbeing2">Seleccione una opción:</label>
+                    <select name="wellbeing" id="wellbeing2" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 3 -->
+                <fieldset>
+                    <legend>3. La organización se preocupa por mi salud mental y ofrece recursos o apoyo.</legend>
+                    <label for="wellbeing3">Seleccione una opción:</label>
+                    <select name="wellbeing" id="wellbeing3" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 4 -->
+                <fieldset>
+                    <legend>4. Me siento respaldado para hablar sobre temas de bienestar personal sin temor a repercusiones.</legend>
+                    <label for="wellbeing4">Seleccione una opción:</label>
+                    <select name="wellbeing" id="wellbeing4" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 5 -->
+                <fieldset>
+                    <legend>5. Las políticas de la empresa fomentan el equilibrio entre mi vida laboral y personal.</legend>
+                    <label for="wellbeing5">Seleccione una opción:</label>
+                    <select name="wellbeing" id="wellbeing5" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+            </section>
+
+            <!-- Innovación y Creatividad -->
+            <section>
+                <h2>Innovación y Creatividad</h2>
+                <!-- Pregunta 1 -->
+                <fieldset>
+                    <legend>1. En mi equipo, se fomenta la experimentación y la creatividad.</legend>
+                    <label for="innovation1">Seleccione una opción:</label>
+                    <select name="innovation" id="innovation1" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 2 -->
+                <fieldset>
+                    <legend>2. Me siento apoyado para presentar ideas que puedan mejorar los procesos.</legend>
+                    <label for="innovation2">Seleccione una opción:</label>
+                    <select name="innovation" id="innovation2" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 3 -->
+                <fieldset>
+                    <legend>3. Existe un ambiente de colaboración donde puedo compartir ideas abiertamente.</legend>
+                    <label for="innovation3">Seleccione una opción:</label>
+                    <select name="innovation" id="innovation3" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 4 -->
+                <fieldset>
+                    <legend>4. La organización valora las propuestas innovadoras y las considera seriamente.</legend>
+                    <label for="innovation4">Seleccione una opción:</label>
+                    <select name="innovation" id="innovation4" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 5 -->
+                <fieldset>
+                    <legend>5. Siento que tengo libertad para explorar nuevas formas de hacer mi trabajo.</legend>
+                    <label for="innovation5">Seleccione una opción:</label>
+                    <select name="innovation" id="innovation5" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+            </section>
+
+            <!-- Sostenibilidad Laboral -->
+            <section>
+                <h2>Sostenibilidad Laboral</h2>
+                <!-- Pregunta 1 -->
+                <fieldset>
+                    <legend>1. Mi carga laboral es adecuada y sostenible en el tiempo.</legend>
+                    <label for="sustainability1">Seleccione una opción:</label>
+                    <select name="sustainability" id="sustainability1" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 2 -->
+                <fieldset>
+                    <legend>2. Recibo el apoyo necesario para manejar mis responsabilidades sin sentirme abrumado.</legend>
+                    <label for="sustainability2">Seleccione una opción:</label>
+                    <select name="sustainability" id="sustainability2" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 3 -->
+                <fieldset>
+                    <legend>3. La organización toma en cuenta la calidad de vida de los empleados al asignar metas.</legend>
+                    <label for="sustainability3">Seleccione una opción:</label>
+                    <select name="sustainability" id="sustainability3" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 4 -->
+                <fieldset>
+                    <legend>4. Mi organización implementa prácticas que promueven la equidad en la distribución de tareas.</legend>
+                    <label for="sustainability4">Seleccione una opción:</label>
+                    <select name="sustainability" id="sustainability4" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 5 -->
+                <fieldset>
+                    <legend>5. Se promueve un ambiente en el que se respetan los descansos y el tiempo personal.</legend>
+                    <label for="sustainability5">Seleccione una opción:</label>
+                    <select name="sustainability" id="sustainability5" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+            </section>
+
+            <!-- Conexión y Comunidad -->
+            <section>
+                <h2>Conexión y Comunidad</h2>
+                <!-- Pregunta 1 -->
+                <fieldset>
+                    <legend>1. Siento que tengo oportunidades para conectar con colegas, aun en un entorno virtual.</legend>
+                    <label for="connection1">Seleccione una opción:</label>
+                    <select name="connection" id="connection1" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 2 -->
+                <fieldset>
+                    <legend>2. La organización promueve actividades para fortalecer el trabajo en equipo.</legend>
+                    <label for="connection2">Seleccione una opción:</label>
+                    <select name="connection" id="connection2" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 3 -->
+                <fieldset>
+                    <legend>3. Mi equipo mantiene una comunicación abierta y fluida.</legend>
+                    <label for="connection3">Seleccione una opción:</label>
+                    <select name="connection" id="connection3" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 4 -->
+                <fieldset>
+                    <legend>4. Me siento parte de una comunidad dentro de mi organización.</legend>
+                    <label for="connection4">Seleccione una opción:</label>
+                    <select name="connection" id="connection4" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 5 -->
+                <fieldset>
+                    <legend>5. Las relaciones interpersonales en mi lugar de trabajo son positivas y de apoyo.</legend>
+                    <label for="connection5">Seleccione una opción:</label>
+                    <select name="connection" id="connection5" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+            </section>
+
+            <!-- Responsabilidad Social y Propósito -->
+            <section>
+                <h2>Responsabilidad Social y Propósito</h2>
+                <!-- Pregunta 1 -->
+                <fieldset>
+                    <legend>1. Siento que mi trabajo contribuye a un propósito significativo.</legend>
+                    <label for="responsibility1">Seleccione una opción:</label>
+                    <select name="responsibility" id="responsibility1" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 2 -->
+                <fieldset>
+                    <legend>2. Mi organización tiene una misión y valores con los cuales me identifico.</legend>
+                    <label for="responsibility2">Seleccione una opción:</label>
+                    <select name="responsibility" id="responsibility2" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 3 -->
+                <fieldset>
+                    <legend>3. Me siento motivado porque mi trabajo tiene un impacto positivo en la sociedad.</legend>
+                    <label for="responsibility3">Seleccione una opción:</label>
+                    <select name="responsibility" id="responsibility3" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 4 -->
+                <fieldset>
+                    <legend>4. La organización promueve la responsabilidad social como parte de su cultura.</legend>
+                    <label for="responsibility4">Seleccione una opción:</label>
+                    <select name="responsibility" id="responsibility4" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+                <!-- Pregunta 5 -->
+                <fieldset>
+                    <legend>5. Mi empresa participa en iniciativas que contribuyen a la comunidad.</legend>
+                    <label for="responsibility5">Seleccione una opción:</label>
+                    <select name="responsibility" id="responsibility5" required>
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="1">Totalmente en desacuerdo</option>
+                        <option value="2">En desacuerdo</option>
+                        <option value="3">Neutral</option>
+                        <option value="4">De acuerdo</option>
+                        <option value="5">Totalmente de acuerdo</option>
+                    </select>
+                </fieldset>
+            </section>
+
+            <!-- Botón para ver resultados -->
+            <button type="button" id="submitBtn">Ver Resultados</button>
+        </form>
+
+        <!-- Sección de resultados -->
+        <section id="resultScreen">
+    <div class="avoid-page-break">
+            <canvas id="resultsChart"></canvas>
+ </div>
+            <div id="resultsText"></div>
+            <h3>Resultado General</h3>
+            <p id="generalResult"></p>
+            <button id="downloadPdfBtn">Descargar PDF</button>
+            <button id="toggleGuideBtn">Ver Guía</button>
+            <button id="goBackBtn">Regresar al Cuestionario</button>
+
+            <!-- Sección de la guía -->
+            <div id="guideSection">
+                <h2>Guía para el Test de Adaptabilidad Organizacional y Bienestar Integral (AOBI)</h2>
+                <p><strong>Adaptabilidad al Cambio:</strong> La capacidad de ajustarse eficazmente a los cambios y nuevas situaciones en el entorno.</p>
+                <p><strong>Factores evaluados:</strong> Flexibilidad, resiliencia, apertura a la innovación.</p>
+                <p><strong>Recomendaciones para mejorar:</strong> Practica la flexibilidad introduciendo pequeños cambios en tu rutina, aprende técnicas de manejo del estrés y prueba herramientas o métodos nuevos.</p>
+ 
+                <p><strong>Bienestar Integral:</strong> Evalúa el equilibrio entre la vida personal y profesional, el manejo del estrés y la satisfacción emocional.</p>
+                <p><strong>Factores evaluados:</strong> Manejo del estrés, balance vida-trabajo, satisfacción emocional.</p>
+                <p><strong>Recomendaciones para mejorar:</strong> Planifica el tiempo para relajarte, practica la autocompasión y conecta regularmente con amigos y familiares.</p>
+
+                <p><strong>Innovación y Creatividad:</strong> Mide la disposición y capacidad para generar nuevas ideas y mejorar los procesos.</p>
+                <p><strong>Factores evaluados:</strong> Pensamiento creativo, resolución de problemas, curiosidad.</p>
+                <p><strong>Recomendaciones para mejorar:</strong> Dedica tiempo a aprender sobre temas nuevos, practica el pensamiento lateral y prueba enfoques alternativos.</p>
+
+                <p><strong>Sostenibilidad Laboral:</strong> Evalúa la habilidad para gestionar la carga de trabajo de manera saludable en el tiempo.</p>
+                <p><strong>Factores evaluados:</strong> Gestión del tiempo, prevención del burnout, autocuidado.</p>
+                <p><strong>Recomendaciones para mejorar:</strong> Planifica tus tareas, asegúrate de descansar regularmente y define límites claros entre trabajo y descanso.</p>
+
+                <p><strong>Conexión y Comunidad:</strong> Mide la capacidad para construir relaciones positivas y fomentar un sentido de pertenencia.</p>
+                <p><strong>Factores evaluados:</strong> Empatía, trabajo en equipo, relaciones interpersonales.</p>
+                <p><strong>Recomendaciones para mejorar:</strong> Practica la escucha activa, participa en actividades de grupo y muestra aprecio hacia los demás.</p>
+
+                <p><strong>Responsabilidad Social y Propósito:</strong> Evalúa el sentido de propósito y contribución hacia un impacto positivo en la comunidad.</p>
+                <p><strong>Factores evaluados:</strong> Propósito personal, contribución al entorno, responsabilidad hacia la comunidad.</p>
+                <p><strong>Recomendaciones para mejorar:</strong> Reflexiona sobre tus valores, participa en actividades de voluntariado y define tu propósito personal.</p>
+            </div>
+        </section>
+    </main>
+     <!-- Script JavaScript -->
+        <script src="script.js"></script>
+</body>
+</html>
