@@ -220,42 +220,13 @@
                 }
             };
 
-            // Listener del botón para guardar y mostrar resultados
-    submitBtn.addEventListener('click', async (event) => {
-        event.preventDefault();
-
-        if (form.checkValidity()) {
-            // Prevenir clics múltiples
-            if (isSubmitting) {
-                console.log('Formulario ya está en proceso de envío.');
-                return;
-            }
-            isSubmitting = true;
-            submitBtn.disabled = true;
-
-            try {
-                console.log('Formulario enviado');
-                await saveResponses();
-                showResults();
-            } catch (error) {
-                alert('Hubo un problema al guardar tus respuestas. Por favor, intenta nuevamente.');
-                console.error('Error al guardar las respuestas:', error);
-            } finally {
-                isSubmitting = false;
-                submitBtn.disabled = false;
-            }
-        } else {
-            alert('Por favor, responda todas las preguntas.');
-        }
-    });
-
-    async function saveResponses() {
+             async function saveResponses() {
         const formData = new FormData(form);
         
         // Crear un objeto que contenga todos los valores del formulario
         let responses = {};
         for (let [key, value] of formData.entries()) {
-            responses[key] = value;
+            responses[key] = Number(value) || value; // Convertir a número cuando sea posible
         }
 
         try {
@@ -267,17 +238,15 @@
                 body: JSON.stringify(responses)
             });
 
-            // Verificar si la respuesta es exitosa
             if (!response.ok) {
                 throw new Error(`Error al enviar los datos: ${response.status} - ${response.statusText}`);
             }
 
-            // Intentar convertir la respuesta a JSON
             const data = await response.json();
             console.log('Respuestas guardadas exitosamente:', data);
         } catch (error) {
             console.error('Error al guardar las respuestas:', error);
-            throw error;  // Lanza el error para que el manejo en el `submitBtn` se encargue
+            throw error; // Rethrow para ser manejado en `submitBtn` listener
         }
     }
 
@@ -293,16 +262,14 @@
         guideSection.style.display = guideSection.style.display === 'none' ? 'block' : 'none';
     });
 
-
-
-                
-            function showResults() {
-                const scores = calculateScores();
-                displayChart(scores);
-                displayResults(scores);
-                form.style.display = 'none';
-                resultScreen.style.display = 'block';
-            }
+    // Función para mostrar los resultados después de calcular los puntajes
+    function showResults() {
+        const scores = calculateScores();
+        displayChart(scores);
+        displayResults(scores);
+        form.style.display = 'none';
+        resultScreen.style.display = 'block';
+    }
 
             function calculateScores() {
     // Crear objeto para almacenar los puntajes de cada dimensión
