@@ -220,38 +220,55 @@
                 }
             };
 
-            submitBtn.addEventListener('click', () => {
-                if (form.checkValidity()) {
-                    showResults();
-                } else {
-                    alert('Por favor, responda todas las preguntas.');
-                }
-            });
+           document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('questionnaireForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultScreen = document.getElementById('resultScreen');
+    const goBackBtn = document.getElementById('goBackBtn');
+    const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+    const toggleGuideBtn = document.getElementById('toggleGuideBtn');
 
-            goBackBtn.addEventListener('click', () => {
-                resultScreen.style.display = 'none';
-                form.style.display = 'block';
-            });
+    submitBtn.addEventListener('click', async (event) => {
+        // Previene el comportamiento predeterminado del formulario
+        event.preventDefault();
 
-            downloadPdfBtn.addEventListener('click', generatePDF);
-
-             submitBtn.addEventListener('click', () => {
         if (form.checkValidity()) {
-            // Enviar respuestas a Netlify y luego mostrar los resultados
-            saveResponses()
-                .then(() => showResults())
-                .catch(error => {
-                    alert('Hubo un problema al guardar tus respuestas. Por favor, intenta nuevamente.');
-                    console.error('Error al guardar las respuestas:', error);
-                });
+            try {
+                // Desactivar el botón de enviar para evitar múltiples envíos
+                submitBtn.disabled = true;
+
+                // Enviar respuestas a Netlify
+                await saveResponses();
+
+                // Mostrar los resultados después de guardar las respuestas
+                showResults();
+            } catch (error) {
+                alert('Hubo un problema al guardar tus respuestas. Por favor, intenta nuevamente.');
+                console.error('Error al guardar las respuestas:', error);
+            } finally {
+                // Restaurar el botón de enviar después de procesar la solicitud
+                submitBtn.disabled = false;
+            }
         } else {
             alert('Por favor, responda todas las preguntas.');
         }
     });
 
+    goBackBtn.addEventListener('click', () => {
+        resultScreen.style.display = 'none';
+        form.style.display = 'block';
+    });
+
+    downloadPdfBtn.addEventListener('click', generatePDF);
+
+    toggleGuideBtn.addEventListener('click', () => {
+        const guideSection = document.getElementById('guideSection');
+        guideSection.style.display = guideSection.style.display === 'none' ? 'block' : 'none';
+    });
+
     async function saveResponses() {
         const formData = new FormData(form);
-        
+
         // Crear un objeto que contenga todos los valores del formulario
         let responses = {};
         for (let [key, value] of formData.entries()) {
@@ -277,23 +294,9 @@
             console.log('Respuestas guardadas exitosamente:', data);
         } catch (error) {
             console.error('Error al guardar las respuestas:', error);
-            throw error;  // Lanza el error para que el manejo en el `submitBtn` se encargue
+            throw error; // Lanza el error para que el manejo en el `submitBtn` se encargue
         }
     }
-
-    goBackBtn.addEventListener('click', () => {
-        resultScreen.style.display = 'none';
-        form.style.display = 'block';
-    });
-
-    downloadPdfBtn.addEventListener('click', generatePDF);
-
-    toggleGuideBtn.addEventListener('click', () => {
-        const guideSection = document.getElementById('guideSection');
-        guideSection.style.display = guideSection.style.display === 'none' ? 'block' : 'none';
-    });
-
-
 
                 
             function showResults() {
