@@ -435,6 +435,38 @@
                 };
             }
 
+                document.getElementById('submitBtn').addEventListener('click', () => {
+    const form = document.getElementById('questionnaireForm');
+    const formData = new FormData(form);
+    
+    // Crear un objeto que contenga todos los valores del formulario
+    let responses = {};
+    for (let [key, value] of formData.entries()) {
+        responses[key] = value;
+    }
+
+    // Enviar las respuestas a la función de Netlify
+    fetch('/.netlify/functions/saveResponses', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(responses)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error al enviar los datos: ${response.status} - ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Respuestas guardadas exitosamente:', data);
+    })
+    .catch(error => {
+        console.error('Error al guardar las respuestas:', error);
+    });
+});
+                
             function generatePDF() {
     const element = document.getElementById('resultScreen');
 
@@ -463,33 +495,6 @@
 }
 
 
-
-document.getElementById('submitBtn').addEventListener('click', () => {
-    const form = document.getElementById('questionnaireForm');
-    const formData = new FormData(form);
-    
-    // Crear un objeto que contenga todos los valores del formulario
-    let responses = {};
-    for (let [key, value] of formData.entries()) {
-        responses[key] = value;
-    }
-
-    // Enviar las respuestas a la función de Netlify
-    fetch('/.netlify/functions/saveResponses', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(responses)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Respuestas guardadas exitosamente:', data);
-    })
-    .catch(error => {
-        console.error('Error al guardar las respuestas:', error);
-    });
-});
 
 
 
