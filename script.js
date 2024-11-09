@@ -220,30 +220,30 @@
                 }
             };
 
-            // Listener del botón para guardar y mostrar resultados
-    submitBtn.addEventListener('click', async (event) => {
-        event.preventDefault();
+            submitBtn.addEventListener('click', () => {
+                if (form.checkValidity()) {
+                    showResults();
+                } else {
+                    alert('Por favor, responda todas las preguntas.');
+                }
+            });
 
+            goBackBtn.addEventListener('click', () => {
+                resultScreen.style.display = 'none';
+                form.style.display = 'block';
+            });
+
+            downloadPdfBtn.addEventListener('click', generatePDF);
+
+             submitBtn.addEventListener('click', () => {
         if (form.checkValidity()) {
-            // Prevenir clics múltiples
-            if (isSubmitting) {
-                console.log('Formulario ya está en proceso de envío.');
-                return;
-            }
-            isSubmitting = true;
-            submitBtn.disabled = true;
-
-            try {
-                console.log('Formulario enviado');
-                await saveResponses();
-                showResults();
-            } catch (error) {
-                alert('Hubo un problema al guardar tus respuestas. Por favor, intenta nuevamente.');
-                console.error('Error al guardar las respuestas:', error);
-            } finally {
-                isSubmitting = false;
-                submitBtn.disabled = false;
-            }
+            // Enviar respuestas a Netlify y luego mostrar los resultados
+            saveResponses()
+                .then(() => showResults())
+                .catch(error => {
+                    alert('Hubo un problema al guardar tus respuestas. Por favor, intenta nuevamente.');
+                    console.error('Error al guardar las respuestas:', error);
+                });
         } else {
             alert('Por favor, responda todas las preguntas.');
         }
