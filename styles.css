@@ -133,7 +133,7 @@ p, ul, li {
 
     /* Controlar los saltos de página */
     h3 {
-        page-break-before: always;
+        page-break-before: avoid;
     }
 
     .avoid-page-break {
