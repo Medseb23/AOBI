@@ -22,6 +22,11 @@
             padding: 20px;
             border-radius: 8px;
         }
+
+#resultsText, #generalResult {
+    padding: 10px;
+}
+
 /* Evitar saltos de página entre títulos y el contenido siguiente */
 h3, h2 {
     page-break-after: avoid;
