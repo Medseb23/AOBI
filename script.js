@@ -463,7 +463,7 @@
             console.error('Error al generar el PDF:', error);
         });
     }, 500); // Espera medio segundo para asegurar que el contenido esté listo
-});
+}
 
 
 
