@@ -431,7 +431,7 @@
             }
 
                         
-            function generatePDF() {
+            document.getElementById('downloadPdfBtn').addEventListener('click', () => {
     const element = document.getElementById('resultScreen');
 
     if (!element) {
@@ -452,30 +452,19 @@
     document.getElementById('toggleGuideBtn').style.display = 'none';
     document.getElementById('downloadPdfBtn').style.display = 'none';
 
-    console.log('Generando PDF, por favor espera...');
-
     // Esperar un momento antes de generar el PDF para asegurar que el contenido esté listo
     setTimeout(() => {
-        html2pdf()
-            .set(opt)
-            .from(element)
-            .save()
-            .then(() => {
-                // Restaurar la visibilidad de los botones después de generar el PDF
-                document.getElementById('goBackBtn').style.display = 'block';
-                document.getElementById('toggleGuideBtn').style.display = 'block';
-                document.getElementById('downloadPdfBtn').style.display = 'block';
-                console.log('PDF generado exitosamente');
-            })
-            .catch((error) => {
-                console.error('Error al generar el PDF:', error);
-                // Restaurar la visibilidad de los botones en caso de error
-                document.getElementById('goBackBtn').style.display = 'block';
-                document.getElementById('toggleGuideBtn').style.display = 'block';
-                document.getElementById('downloadPdfBtn').style.display = 'block';
-            });
-    }, 500); // Ajusta el tiempo si es necesario
-}
+        html2pdf().set(opt).from(element).save().then(() => {
+            // Restaurar la visibilidad de los botones después de generar el PDF
+            document.getElementById('goBackBtn').style.display = 'block';
+            document.getElementById('toggleGuideBtn').style.display = 'block';
+            document.getElementById('downloadPdfBtn').style.display = 'block';
+        }).catch((error) => {
+            console.error('Error al generar el PDF:', error);
+        });
+    }, 500); // Espera medio segundo para asegurar que el contenido esté listo
+});
+
 
 
 
