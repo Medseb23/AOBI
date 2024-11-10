@@ -97,7 +97,8 @@ p, ul, li {
         color: #000;
         margin: 0;
         padding: 0;
-    }
+             page-break-after: avoid; /* Evitar que haya un salto de página después del header */
+        }
 
     header, main {
         margin: 0;
