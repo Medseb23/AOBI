@@ -151,6 +151,9 @@ p, ul, li {
     section {
         page-break-before: always; /* Forzar cada sección a iniciar en una nueva página */
         page-break-inside: avoid; /* Evitar saltos de página dentro de una sección */
+             margin-bottom: 1in; /* Añadir un espaciado amplio entre secciones al imprimir */
+    
+
     }
 
     .avoid-page-break {
