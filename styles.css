@@ -104,7 +104,7 @@ p, ul, li {
         margin: 0;
         padding: 0.5in; /* Añadir un pequeño margen para mantener contenido bien separado de los bordes */
         width: 100%;
-                page-break-after: avoid; /* Evitar que haya un salto de página después del header */
+                page-break-inside: avoid; /* Evitar que haya un salto de página después del header */
     }
         
 
