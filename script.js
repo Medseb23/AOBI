@@ -430,21 +430,16 @@
                 };
             }
 
-                function generatePDF() {          
-            document.getElementById('downloadPdfBtn').addEventListener('click', () => {
+                        
+            function generatePDF() {
     const element = document.getElementById('resultScreen');
 
-    if (!element) {
-        console.error('No se encontró el elemento resultScreen para generar el PDF.');
-        return;
-    }
-
     const opt = {
-        margin: [0.5, 0.5, 0.5, 0.5], // Márgenes en pulgadas
-        filename: 'Resultados_AOBI.pdf',
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 2, letterRendering: true },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        margin:       [0.5, 0.5, 0.5, 0.5], // Márgenes: [superior, izquierdo, inferior, derecho] en pulgadas
+        filename:     'Resultados_AOBI.pdf',
+        image:        { type: 'jpeg', quality: 1 },
+        html2canvas:  { scale: 2, letterRendering: true },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
 
     // Ocultar botones antes de generar el PDF
@@ -452,20 +447,16 @@
     document.getElementById('toggleGuideBtn').style.display = 'none';
     document.getElementById('downloadPdfBtn').style.display = 'none';
 
-    // Esperar un momento antes de generar el PDF para asegurar que el contenido esté listo
+    // Esperar un momento antes de generar el PDF
     setTimeout(() => {
         html2pdf().set(opt).from(element).save().then(() => {
             // Restaurar la visibilidad de los botones después de generar el PDF
             document.getElementById('goBackBtn').style.display = 'block';
             document.getElementById('toggleGuideBtn').style.display = 'block';
             document.getElementById('downloadPdfBtn').style.display = 'block';
-        }).catch((error) => {
-            console.error('Error al generar el PDF:', error);
         });
-    }, 500); // Espera medio segundo para asegurar que el contenido esté listo
+    }, 1000); // Puedes ajustar el tiempo si es necesario
 }
-
-
 
 
 
