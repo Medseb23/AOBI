@@ -434,12 +434,17 @@
             function generatePDF() {
     const element = document.getElementById('resultScreen');
 
+    if (!element) {
+        console.error('No se encontró el elemento resultScreen para generar el PDF.');
+        return;
+    }
+
     const opt = {
-        margin:       [0.5, 0.5, 0.5, 0.5], // Márgenes: [superior, izquierdo, inferior, derecho] en pulgadas
-        filename:     'Resultados_AOBI.pdf',
-        image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 2, letterRendering: true },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        margin: [0.5, 0.5, 0.5, 0.5], // Márgenes en pulgadas
+        filename: 'Resultados_AOBI.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2, letterRendering: true },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
 
     // Ocultar botones antes de generar el PDF
@@ -447,16 +452,31 @@
     document.getElementById('toggleGuideBtn').style.display = 'none';
     document.getElementById('downloadPdfBtn').style.display = 'none';
 
-    // Esperar un momento antes de generar el PDF
+    console.log('Generando PDF, por favor espera...');
+
+    // Esperar un momento antes de generar el PDF para asegurar que el contenido esté listo
     setTimeout(() => {
-        html2pdf().set(opt).from(element).save().then(() => {
-            // Restaurar la visibilidad de los botones después de generar el PDF
-            document.getElementById('goBackBtn').style.display = 'block';
-            document.getElementById('toggleGuideBtn').style.display = 'block';
-            document.getElementById('downloadPdfBtn').style.display = 'block';
-        });
-    }, 1000); // Puedes ajustar el tiempo si es necesario
+        html2pdf()
+            .set(opt)
+            .from(element)
+            .save()
+            .then(() => {
+                // Restaurar la visibilidad de los botones después de generar el PDF
+                document.getElementById('goBackBtn').style.display = 'block';
+                document.getElementById('toggleGuideBtn').style.display = 'block';
+                document.getElementById('downloadPdfBtn').style.display = 'block';
+                console.log('PDF generado exitosamente');
+            })
+            .catch((error) => {
+                console.error('Error al generar el PDF:', error);
+                // Restaurar la visibilidad de los botones en caso de error
+                document.getElementById('goBackBtn').style.display = 'block';
+                document.getElementById('toggleGuideBtn').style.display = 'block';
+                document.getElementById('downloadPdfBtn').style.display = 'block';
+            });
+    }, 500); // Ajusta el tiempo si es necesario
 }
+
 
 
 
