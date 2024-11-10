@@ -430,7 +430,7 @@
                 };
             }
 
-                        
+                function generatePDF() {          
             document.getElementById('downloadPdfBtn').addEventListener('click', () => {
     const element = document.getElementById('resultScreen');
 
