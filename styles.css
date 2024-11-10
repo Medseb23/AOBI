@@ -104,6 +104,7 @@ p, ul, li {
         padding: 0.5in; /* Añadir un pequeño margen para mantener contenido bien separado de los bordes */
         width: 100%;
     }
+        
 
     #resultScreen {
         max-width: 7.5in; /* Ancho máximo considerando tamaño carta en vertical con márgenes */
@@ -111,6 +112,12 @@ p, ul, li {
         margin: 0 auto; /* Centrar el contenido */
         page-break-inside: avoid; /* Evitar que el contenido se corte a mitad de página */
     }
+        #resultsChart {
+        max-height: 500px; /* Ajustar para evitar que el gráfico ocupe demasiado espacio */
+        width: 100%;
+        height: auto;
+    }
+}
 
     h1, h2, h3 {
         color: #000;
